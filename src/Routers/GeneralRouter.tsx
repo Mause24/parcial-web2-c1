@@ -1,5 +1,5 @@
 import { MissingRoute } from "@/Components"
-import { Content } from "@/Screens"
+import { Content, Create } from "@/Screens"
 import { Route, Routes } from "react-router-dom"
 
 export const GeneralRouter = (): JSX.Element => {
@@ -7,7 +7,7 @@ export const GeneralRouter = (): JSX.Element => {
 		<Routes>
 			<Route path="/" element={<Content />} />
 
-			<Route path="/create" element={<div>Create</div>} />
+			<Route path="/create" element={<Create />} />
 
 			<Route path="*" element={<MissingRoute />} />
 		</Routes>
