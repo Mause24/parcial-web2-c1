@@ -1,3 +1,4 @@
+import clsx from "clsx"
 import { Footer } from "../Footer"
 import { Header } from "../Header"
 import { LayoutProps } from "./Layout.types"
@@ -9,7 +10,7 @@ export const Layout = (props: LayoutProps): JSX.Element => {
 	return (
 		<>
 			<Header />
-			<main>{children}</main>
+			<main className={clsx("min-h-lvh")}>{children}</main>
 			<Footer />
 		</>
 	)

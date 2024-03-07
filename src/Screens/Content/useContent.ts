@@ -13,9 +13,9 @@ export const useContent = () => {
 		setFilter(item)
 	}
 
-	const getCardsData = async () => {
+	const getCardsData = () => {
 		try {
-			const data = await getAllSports()
+			const data = getAllSports()
 			setCardsData(data)
 		} catch (error) {
 			console.error(error)
