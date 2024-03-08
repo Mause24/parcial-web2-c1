@@ -74,7 +74,8 @@ export const useFormCreate = () => {
 			{
 				id: formData.id,
 				category:
-					getCategoryName(formData.categoria) ?? Categories.table,
+					getCategoryName(Number(formData.categoria)) ??
+					Categories.table,
 				team: formData.equipo,
 				description: formData.descripcion,
 				link: formData.link,
