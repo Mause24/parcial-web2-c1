@@ -10,6 +10,7 @@ export const FormCreate: React.FC = () => {
 		formData,
 		handleChange,
 		handleSubmit,
+		handleImageChange,
 	} = useFormCreate()
 
 	return (
@@ -124,6 +125,28 @@ export const FormCreate: React.FC = () => {
 						</p>
 					)}
 				</div>
+				<div className="mb-4">
+					<label htmlFor="imagen" className="block text-gray-700">
+						Imagen
+					</label>
+					<input
+						type="file"
+						id="imagen"
+						name="imagen"
+						accept="image/jpeg, image/png"
+						onChange={handleImageChange}
+						className="form-input mt-1 block w-full"
+					/>
+				</div>
+				{formData.imagen && (
+					<div className="mb-4">
+						<img
+							src={formData.imagen}
+							alt="Preview"
+							className="max-w-full h-60"
+						/>
+					</div>
+				)}
 				<div className="mt-6 flex justify-center">
 					<button
 						type="submit"

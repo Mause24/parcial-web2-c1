@@ -9,9 +9,10 @@ export const useFormCreate = () => {
 		id: 0,
 		titulo: "",
 		descripcion: "",
-		categoria: 0,
+		categoria: Categories.table,
 		equipo: "",
 		link: "",
+		imagen: "",
 	})
 	const { addMoreCards } = useCardData()
 	const navigate = useNavigate()
@@ -35,6 +36,7 @@ export const useFormCreate = () => {
 			categoria: Categories.table,
 			equipo: "",
 			link: "",
+			imagen: "",
 		})
 	}
 
@@ -50,6 +52,21 @@ export const useFormCreate = () => {
 		return undefined
 	}
 
+	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const file = e.target.files?.[0]
+		if (file) {
+			const reader = new FileReader()
+			reader.readAsDataURL(file)
+			reader.onload = () => {
+				const imageDataUrl = reader.result as string
+				setFormData(prevState => ({
+					...prevState,
+					imagen: imageDataUrl,
+				}))
+			}
+		}
+	}
+
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault()
 
@@ -62,7 +79,10 @@ export const useFormCreate = () => {
 				description: formData.descripcion,
 				link: formData.link,
 				sport: formData.titulo,
-				image: "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg",
+				image:
+					formData.imagen !== ""
+						? formData.imagen
+						: "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg",
 			},
 		])
 		resetForm()
@@ -130,6 +150,7 @@ export const useFormCreate = () => {
 		categoriesArray,
 		handleChange,
 		formData,
+		handleImageChange,
 		formErrors,
 		handleSubmit,
 	}
