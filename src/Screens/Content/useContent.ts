@@ -1,25 +1,14 @@
-import { getAllSports } from "@/Api"
 import { Item } from "@/Components"
-import { Categories, SportTeam } from "@/Interfaces"
-import { useEffect, useMemo, useState } from "react"
-import { useLocation } from "react-router-dom"
+import { Categories } from "@/Interfaces"
+import { useCardData } from "@/Store"
+import { useMemo, useState } from "react"
 
 export const useContent = () => {
-	const location = useLocation()
 	const [filter, setFilter] = useState<Item | undefined>(undefined)
-	const [cardsData, setCardsData] = useState<SportTeam[]>([])
+	const { addMoreCards, data } = useCardData()
 
 	const onChangeFilter = (item: Item) => {
 		setFilter(item)
-	}
-
-	const getCardsData = () => {
-		try {
-			const data = getAllSports()
-			setCardsData(data)
-		} catch (error) {
-			console.error(error)
-		}
 	}
 
 	const categoriesArray = useMemo(
@@ -38,22 +27,11 @@ export const useContent = () => {
 		[Categories]
 	)
 
-	useEffect(() => {
-		let mounted = true
-
-		if (mounted) {
-			getCardsData()
-		}
-
-		return () => {
-			mounted = false
-		}
-	}, [location])
-
 	return {
-		cardsData,
+		data,
 		filter,
 		categoriesArray,
+		addMoreCards,
 		onChangeFilter,
 	}
 }

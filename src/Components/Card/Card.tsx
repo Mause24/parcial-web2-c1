@@ -23,7 +23,7 @@ export const Card = (props: CardProps): JSX.Element => {
 			<img
 				className={clsx(
 					"w-full",
-					"h-36",
+					"h-60",
 					"rounded-t-lg",
 					"object-cover"
 				)}

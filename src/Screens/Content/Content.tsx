@@ -3,7 +3,7 @@ import clsx from "clsx"
 import { useContent } from "./useContent"
 
 export const Content = (): JSX.Element => {
-	const { cardsData, filter, onChangeFilter, categoriesArray } = useContent()
+	const { data, filter, onChangeFilter, categoriesArray } = useContent()
 
 	return (
 		<div
@@ -16,7 +16,7 @@ export const Content = (): JSX.Element => {
 				"items-center"
 			)}
 		>
-			<div className={clsx("flex")}>
+			<div className={clsx("flex", "mb-3")}>
 				<Select
 					value={filter}
 					onChange={onChangeFilter}
@@ -33,7 +33,7 @@ export const Content = (): JSX.Element => {
 					"justify-center"
 				)}
 			>
-				{cardsData
+				{data
 					.filter(item =>
 						filter ? item.category === filter.value : true
 					)
